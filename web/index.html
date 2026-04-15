@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OSINT Helper Web UI</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <header>
+        <h1>OSINT Helper</h1>
+        <p class="sub">Passive recon, now with a browser UI.</p>
+      </header>
+
+      <section class="card">
+        <form id="osintForm">
+          <div class="row">
+            <label for="mode">Mode</label>
+            <select id="mode" name="mode">
+              <option value="username">username</option>
+              <option value="domain">domain</option>
+              <option value="ip">ip</option>
+              <option value="email">email</option>
+              <option value="phone">phone</option>
+              <option value="asn">asn</option>
+              <option value="ioc">ioc correlator</option>
+            </select>
+          </div>
+
+          <div class="row" id="singleRow">
+            <label for="value">Value</label>
+            <input id="value" name="value" autocomplete="off" placeholder="example.com" />
+          </div>
+
+          <div class="row hidden" id="iocRow">
+            <label for="indicators">Indicators (one per line or comma-separated)</label>
+            <textarea id="indicators" name="indicators" rows="6" placeholder="google.com
+8.8.8.8
+analyst@example.com
+https://example.com/login"></textarea>
+          </div>
+
+          <div class="row hidden" id="probeRow">
+            <label class="checkbox">
+              <input id="probe" type="checkbox" />
+              Probe username profile URLs (HEAD requests)
+            </label>
+          </div>
+
+          <div class="actions">
+            <button type="submit" id="runBtn">Run</button>
+            <button type="button" id="sampleBtn" class="secondary">Load sample</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card">
+        <div class="output-head">
+          <h2>Output</h2>
+          <button id="copyBtn" class="secondary" type="button">Copy text</button>
+        </div>
+        <pre id="textOut">Ready.</pre>
+      </section>
+
+      <section class="card">
+        <details>
+          <summary>Raw JSON</summary>
+          <pre id="jsonOut">{}</pre>
+        </details>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
